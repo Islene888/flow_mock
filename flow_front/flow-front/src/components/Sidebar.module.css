@@ -1,0 +1,39 @@
+.sidebar {
+    background-color: #111;
+    color: #fff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 20px;
+    border-bottom: 1px solid #333;
+}
+
+.nav {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.navLink {
+    color: #ccc;
+    text-decoration: none;
+    padding: 10px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.navLink:hover {
+    background-color: #333;
+}
+
+.active {
+    background-color: #4C9AFF;
+    color: #fff;
+    font-weight: 500;
+}

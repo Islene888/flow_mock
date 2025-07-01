@@ -1,0 +1,21 @@
+.pageContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.gridContainer {
+    display: grid;
+    /* 关键：响应式网格布局 */
+    /* auto-fill 会尽可能多地填充列 */
+    /* minmax(320px, 1fr) 表示每列最小宽度320px，最大自由占据1份空间 */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px; /* 网格间距 */
+}

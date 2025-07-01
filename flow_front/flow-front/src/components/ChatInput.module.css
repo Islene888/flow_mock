@@ -1,0 +1,7 @@
+.chatInputContainer {
+    display: flex;
+    gap: 8px; /* 使用 gap 替代 margin */
+    padding: 16px;
+    background-color: #333;
+    border-top: 1px solid #444;
+}

@@ -1,0 +1,12 @@
+.promptList {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 0 24px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

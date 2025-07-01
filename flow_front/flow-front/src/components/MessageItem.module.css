@@ -1,0 +1,37 @@
+/* src/components/MessageItem.module.css (请完整复制) */
+
+.message {
+    display: flex;
+    margin-bottom: 16px;
+}
+
+.assistant {
+    justify-content: flex-start;
+}
+
+.user {
+    justify-content: flex-end;
+}
+
+.content {
+    /* 这一段样式是核心，它会同时作用于用户和助手两种气泡。
+      请确保您的代码里有这段，并且没有拼写错误。
+    */
+    max-width: 70%;          /* 设置气泡的最大宽度，这是解决“太窄”问题的关键 */
+    padding: 10px 16px;      /* 气泡的内部边距 */
+    border-radius: 18px;     /* 圆角 */
+    line-height: 1.6;        /* 行高 */
+    word-break: break-word;  /* 智能换行，这是解决“文字竖排”问题的关键 */
+}
+
+.assistant .content {
+    background-color: #444;
+    color: #fff;
+    border-top-left-radius: 4px;
+}
+
+.user .content {
+    background-color: #4C9AFF;
+    color: #fff;
+    border-top-right-radius: 4px;
+}

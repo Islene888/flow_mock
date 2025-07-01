@@ -1,0 +1,66 @@
+.promptCard {
+    border-radius: 12px;
+    border: 1px solid #333;
+    background-color: #222;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* 让卡片在网格中等高 */
+}
+
+.promptCard:hover {
+    border-color: #1677ff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transform: translateY(-4px);
+}
+
+.content {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #e5e5e5;
+    margin-bottom: 12px;
+    /* 限制内容最多显示3行，超出部分用省略号代替 */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1; /* 让内容区占据多余空间 */
+}
+
+.description {
+    font-size: 14px;
+    color: #888;
+    margin: 0 0 12px;
+}
+
+.tags {
+    margin-bottom: 16px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto; /* 将 footer 推到底部 */
+}
+
+.author {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+.authorName {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.actions {
+    color: #888;
+}

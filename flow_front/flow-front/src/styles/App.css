@@ -1,0 +1,25 @@
+/* src/styles/App.css */
+
+/* 移除浏览器默认的 body 边距 */
+html, body, #root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    /* 不要加 display: flex 或 place-items: center */
+    /* 也不要加 min-width: 320px */
+    /* background-color 可以留着 */
+    background-color: #111;
+}
+
+
+/* 让 Ant Design 的 Layout.Content 组件能正确地充满剩余空间
+  我们可以给 App.tsx 里的 Content 组件添加一个 className="app-content"
+*/
+.app-content {
+    width: 100%;
+    min-width: 0; /* 很关键 */
+    height: 100vh;
+}
