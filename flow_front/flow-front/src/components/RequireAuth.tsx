@@ -1,13 +1,13 @@
-// src/components/RequireAuth.tsx
 import { useAuth } from '../hooks/useAuth';
 import { Navigate, useLocation } from 'react-router-dom';
-import type {JSX} from "react";
+import type { JSX } from "react";
 
 export default function RequireAuth({ children }: { children: JSX.Element }) {
-    const { user } = useAuth();
+    const { user, token } = useAuth();
     const location = useLocation();
-    if (!user) {
-        // 跳转到登录，带上回跳路径
+
+    // 如果未登录或者没有有效 token，则跳转登录页
+    if (!user || !token) {
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
     return children;
