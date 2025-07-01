@@ -1,10 +1,10 @@
-// src/main/java/com/ella/flow_mock/entity/UserPromptAction.java
 package com.ella.flow_mock.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "user_prompt_action")
 public class UserPromptAction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,8 +12,22 @@ public class UserPromptAction {
 
     private Long userId;
     private Long promptId;
-    private String actionType;           // "like" 或 "favorite"
-    private LocalDateTime actionTime = LocalDateTime.now();
+
+    // "like" 或 "favorite"
+    private String actionType;
+
+    private LocalDateTime actionTime;
+
+    // ----- JPA 必须的无参构造器 -----
+    public UserPromptAction() {}
+
+    // ----- 新增：自动填充 actionTime -----
+    @PrePersist
+    public void prePersist() {
+        if (this.actionTime == null) {
+            this.actionTime = LocalDateTime.now();
+        }
+    }
 
     // --- getter/setter ---
     public Long getId() { return id; }

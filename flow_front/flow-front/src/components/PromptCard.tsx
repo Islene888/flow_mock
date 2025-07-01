@@ -1,121 +1,81 @@
-import React from 'react';
-import { Card, Button, Avatar, Tag, Space, message, Tooltip } from 'antd';
-import { HeartOutlined, HeartFilled, StarOutlined, StarFilled } from '@ant-design/icons';
-import { useToggle, useRequest } from 'ahooks'; // ahooks 是一个优秀的 React Hooks 库，简化异步和状态逻辑
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // 新增
+import React, { useState } from 'react';
+import { Card, Button, Avatar, Tag, Space, Tooltip } from 'antd';
+import { HeartOutlined, HeartFilled, StarOutlined, StarFilled, EditOutlined, InfoCircleOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
+import { type Prompt } from '../types';
 
-import { type Prompt } from '../types'; // 引入我们定义好的类型
-import styles from './PromptCard.module.css';
-
-interface PromptCardProps {
+interface Props {
     prompt: Prompt;
-    userId?: string;
+    userId?: string | number;
+    onShowDetail?: () => void;
 }
 
-// 模拟点赞/收藏的 API 调用
-const handleUserAction = async (
-    promptId: number,
-    userId: string,
-    action: 'like' | 'favorite',
-    state: boolean
-) => {
-    const url = `/api/prompts/${promptId}/${action}?userId=${userId}`;
-    if (state) {
-        // 如果当前是激活状态，则取消
-        return axios.delete(url);
-    }
-    // 否则，激活
-    return axios.post(url);
-};
-
-const PromptCard: React.FC<PromptCardProps> = ({ prompt, userId }) => {
-    // ahooks 的 useToggle 可以优雅地处理布尔值的切换
-    const [liked, { toggle: toggleLike }] = useToggle(false);
-    const [favorited, { toggle: toggleFavorite }] = useToggle(false);
-
-    const navigate = useNavigate(); // 新增
-
-    // ahooks 的 useRequest 可以优雅地处理请求的 loading 和 error 状态
-    const { run: runLike, loading: loadingLike } = useRequest(
-        () => handleUserAction(prompt.id, userId!, 'like', liked),
-        {
-            manual: true, // 手动触发
-            onSuccess: () => toggleLike(),
-            onError: () => message.error('操作失败'),
-        }
-    );
-
-    const { run: runFav, loading: loadingFav } = useRequest(
-        () => handleUserAction(prompt.id, userId!, 'favorite', favorited),
-        {
-            manual: true,
-            onSuccess: () => toggleFavorite(),
-            onError: () => message.error('操作失败'),
-        }
-    );
-
-    const onActionClick = (action: 'like' | 'favorite') => {
-        if (!userId) {
-            message.warning('请先登录');
-            return;
-        }
-        if (action === 'like') runLike();
-        if (action === 'favorite') runFav();
-    };
+const PromptCard: React.FC<Props> = ({ prompt, userId, onShowDetail }) => {
+    const navigate = useNavigate();
+    const [liked, setLiked] = useState(false);
+    const [favorited, setFavorited] = useState(false);
 
     return (
-        <Card className={styles.promptCard} hoverable>
-            <div className={styles.content}>{prompt.content}</div>
-            {prompt.description && <p className={styles.description}>{prompt.description}</p>}
-
-            <div className={styles.tags}>
-                {prompt.tags?.map((tag) => <Tag key={tag}>{tag}</Tag>)}
+        <Card
+            hoverable
+            style={{
+                borderRadius: 18,
+                boxShadow: "0 4px 24px #0002",
+                background: '#24243c',
+                color: '#fff',
+                minHeight: 220
+            }}
+            bodyStyle={{ padding: 20, display: "flex", flexDirection: "column" }}
+        >
+            <div style={{ display: "flex", alignItems: "center", marginBottom: 10 }}>
+                <Avatar src={prompt.author?.avatar || undefined} size={38} style={{ background: '#888' }}>
+                    {prompt.author?.name?.[0] || 'U'}
+                </Avatar>
+                <span style={{ marginLeft: 12, color: "#fff", fontWeight: 600 }}>
+                    {prompt.author?.name || '未知用户'}
+                </span>
+                <span style={{ marginLeft: "auto", fontSize: 14, color: "#bbb" }}>
+                    {prompt.language || ""}
+                </span>
             </div>
-
-            <div className={styles.footer} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <div className={styles.author}>
-                    <Avatar src={prompt.author.avatar} size="small" />
-                    <span className={styles.authorName}>{prompt.author.name}</span>
-                </div>
-                <Space className={styles.actions}>
-                    <Tooltip title={liked ? '取消点赞' : '点赞'}>
+            <div style={{ fontSize: 17, fontWeight: 600, color: "#e5e5e5", marginBottom: 6 }}>
+                {prompt.content}
+            </div>
+            <div style={{ color: "#aaa", fontSize: 15, marginBottom: 10 }}>{prompt.description}</div>
+            <div style={{ marginBottom: 12 }}>
+                {(prompt.tags ?? []).map(tag => <Tag color="geekblue" key={tag}>{tag}</Tag>)}
+            </div>
+            <Space>
+                <Tooltip title={liked ? "取消点赞" : "点赞"}>
+                    <Button
+                        icon={liked ? <HeartFilled style={{ color: "#ff4d4f" }} /> : <HeartOutlined />}
+                        type="text"
+                        onClick={() => setLiked(l => !l)}
+                    />
+                </Tooltip>
+                <span style={{ color: "#ffbaba" }}>{prompt.likeCount + (liked ? 1 : 0)}</span>
+                <Tooltip title={favorited ? "取消收藏" : "收藏"}>
+                    <Button
+                        icon={favorited ? <StarFilled style={{ color: "#ffc53d" }} /> : <StarOutlined />}
+                        type="text"
+                        onClick={() => setFavorited(f => !f)}
+                    />
+                </Tooltip>
+                <span style={{ color: "#ffeaa7" }}>{prompt.favoriteCount + (favorited ? 1 : 0)}</span>
+                <Tooltip title="详情">
+                    <Button icon={<InfoCircleOutlined />} type="text" onClick={onShowDetail} />
+                </Tooltip>
+                {userId && Number(userId) === Number(prompt.creatorId) && (
+                    <Tooltip title="编辑">
                         <Button
-                            icon={liked ? <HeartFilled style={{ color: '#ff4d4f' }} /> : <HeartOutlined />}
+                            icon={<EditOutlined />}
                             type="text"
-                            shape="circle"
-                            onClick={() => onActionClick('like')}
-                            loading={loadingLike}
-                        />
-                    </Tooltip>
-                    <span>{prompt.likeCount + (liked ? 1 : 0)}</span>
-
-                    <Tooltip title={favorited ? '取消收藏' : '收藏'}>
-                        <Button
-                            icon={favorited ? <StarFilled style={{ color: '#ffc53d' }} /> : <StarOutlined />}
-                            type="text"
-                            shape="circle"
-                            onClick={() => onActionClick('favorite')}
-                            loading={loadingFav}
-                        />
-                    </Tooltip>
-                    <span>{prompt.favoriteCount + (favorited ? 1 : 0)}</span>
-                    {/* 只显示给自己 */}
-                    {userId && Number(userId) === Number(prompt.creatorId) && (
-                        <Button
-                            type="link"
-                            size="small"
-                            style={{ marginLeft: 8 }}
                             onClick={() => navigate(`/prompt/edit/${prompt.id}`)}
-                        >
-                            编辑
-                        </Button>
-                    )}
-
-                </Space>
-            </div>
+                        />
+                    </Tooltip>
+                )}
+            </Space>
         </Card>
     );
 };
-
 export default PromptCard;

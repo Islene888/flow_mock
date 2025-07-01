@@ -1,19 +1,19 @@
-// 这个文件用来存放项目中所有共享的 TypeScript 类型
+// src/types/index.ts
 
 export interface Prompt {
     id: number;
     content: string;
     description?: string;
-    tags?: string[];
+    tags: string[]; // 必选，建议后端给 []
+    language?: string; // ← 让 TS 支持 prompt.language
     likeCount: number;
-    creatorId: number | string;
     favoriteCount: number;
+    creatorId: number;
     author: {
         name: string;
         avatar: string;
     };
-
-    // 👇 新增 Bot 预设相关字段
+    // Bot 相关字段
     role?: string;
     instructions?: string;
     greeting?: string;
@@ -22,12 +22,11 @@ export interface Prompt {
 }
 
 export interface User {
-    id: string;
+    id: number;
     name: string;
     avatar?: string;
 }
 
-// 👇 现在新增 Message 类型
 export interface Message {
     id: number | string;
     role: 'user' | 'assistant' | 'system';

@@ -1,19 +1,48 @@
+// src/components/Sidebar.tsx
 import { NavLink } from 'react-router-dom';
-import styles from './Sidebar.module.css';
+import { Menu } from 'antd';
+import {
+    MessageOutlined,
+    AppstoreOutlined,
+    StarOutlined,
+    UserOutlined,
+    HomeOutlined,
+} from '@ant-design/icons';
 
 const Sidebar = () => (
-    <div className={styles.sidebar}>
-        <div className={styles.header}>LobeHub</div>
-        <nav className={styles.nav}>
-            <NavLink to="/" className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}>
-                随便聊天
-            </NavLink>
-            <NavLink to="/market" className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}>
-                提示词市场
-            </NavLink>
-            {/* 这里后续可以动态渲染历史会话列表 */}
-        </nav>
-    </div>
+    <Menu
+        mode="inline"
+        theme="dark"
+        defaultSelectedKeys={['/']}
+        style={{ height: '100%', borderRight: 0, background: '#18181c', color: '#fff' }}
+        items={[
+            {
+                key: '/',
+                icon: <HomeOutlined />,
+                label: <NavLink to="/">推荐首页</NavLink>,
+            },
+            {
+                key: '/market',
+                icon: <AppstoreOutlined />,
+                label: <NavLink to="/market">Prompt市场</NavLink>,
+            },
+            {
+                key: '/mybots',
+                icon: <StarOutlined />,
+                label: <NavLink to="/mybots">我的助手</NavLink>,
+            },
+            {
+                key: '/history',
+                icon: <MessageOutlined />,
+                label: <NavLink to="/history">历史会话</NavLink>,
+            },
+            {
+                key: '/profile',
+                icon: <UserOutlined />,
+                label: <NavLink to="/profile">个人中心</NavLink>,
+            },
+        ]}
+    />
 );
 
 export default Sidebar;
