@@ -36,7 +36,14 @@ _Cloud-Native Multi-Model & Multi-Language AI Chat Platform_
 
 ## Screenshots
 
-- ![Prompt Market](https://user-images.githubusercontent.com/your-screenshot.png)
+- **Prompt Market**
+  
+  ![Prompt Market](https://github.com/Islene888/flow_mock/assets/93449397/9b4e7d8b-77f2-48ef-afe1-0b2c359da93a)
+
+- **Chat Page**
+  
+  ![Chat Page](https://github.com/Islene888/flow_mock/assets/93449397/09ae95f5-1659-4237-86d1-3ea9d3e2254c)
+
 - ![Chat Page](https://user-images.githubusercontent.com/your-screenshot2.png)
 
 ## Demo
