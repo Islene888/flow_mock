@@ -42,7 +42,7 @@ _Cloud-Native Multi-Model & Multi-Language AI Chat Platform_
 
 - **Chat Page**
   
-  ![Chat Page](https://github.com/Islene888/flow_mock/assets/93449397/09ae95f5-1659-4237-86d1-3ea9d3e2254c)
+  ![Chat Page](https://github.com/Islene888/flow_mock/issues/1)
 
 - ![Chat Page](https://user-images.githubusercontent.com/your-screenshot2.png)
 
