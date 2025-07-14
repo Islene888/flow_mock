@@ -1,7 +1,10 @@
 # PolyChat Cloud  
 _Cloud-Native Multi-Model & Multi-Language AI Chat Platform_
 
-[![Watch the demo](https://img.youtube.com/vi/Qd9pAQMy3Hg/hqdefault.jpg)](https://www.youtube.com/watch?v=Qd9pAQMy3Hg)
+- **Chat Page**
+  
+  ![Chat Page](https://private-user-images.githubusercontent.com/146047825/466183704-022c5833-2664-4581-8bae-71ec26f5f256.jpeg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTI1MjQ5MzgsIm5iZiI6MTc1MjUyNDYzOCwicGF0aCI6Ii8xNDYwNDc4MjUvNDY2MTgzNzA0LTAyMmM1ODMzLTI2NjQtNDU4MS04YmFlLTcxZWMyNmY1ZjI1Ni5qcGVnP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI1MDcxNCUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTA3MTRUMjAyMzU4WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9YmNiYjI2NzFjODQxNmE3YjM1ODc1NGQyYjk1NDg1M2JmNWI2MGFlMDUzOGE3OTczMDg2NTRlYmQwMDkyZDQ5MCZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QifQ.4qo8NS39OMki47XmUdVX8TU7B4eNR3Xh26fSP5kEWso)
+
 
 ## Overview
 
@@ -34,24 +37,12 @@ _Cloud-Native Multi-Model & Multi-Language AI Chat Platform_
 - **Bot Management:** Create/edit/favorite/delete bots, real-time role/system prompt preview
 - **Analytics & Event Tracking:** User actions tracked for future analytics
 
-## Screenshots
+## Video demo
 
-- **Prompt Market**
-  
-  ![Prompt Market](https://github.com/Islene888/flow_mock/assets/93449397/9b4e7d8b-77f2-48ef-afe1-0b2c359da93a)
-
-- **Chat Page**
-  
-  ![Chat Page](https://github.com/Islene888/flow_mock/issues/1#issue-3229934258)
-
-- ![Chat Page](https://user-images.githubusercontent.com/your-screenshot2.png)
-
-## Demo
 
 [![Watch the demo](https://img.youtube.com/vi/Qd9pAQMy3Hg/hqdefault.jpg)](https://www.youtube.com/watch?v=Qd9pAQMy3Hg)
 
----
 
-> **Made with ❤️ by [Your Name]**  
-> *Ready for production use and easy to extend for any enterprise AI chatbot needs.*
+
+
 
